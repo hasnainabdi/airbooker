@@ -1,16 +1,22 @@
 class Chatbot {
     constructor() {
+        // Initialize DOM elements
         this.container = document.querySelector('.chatbot-container');
         this.messages = document.querySelector('.chatbot-messages');
         this.input = document.querySelector('.chatbot-input input');
         this.sendButton = document.querySelector('.chatbot-input button');
         this.minimizeButton = document.querySelector('#minimize-chat');
         this.closeButton = document.querySelector('#close-chat');
+        this.openChatButton = document.querySelector('#open-chat');
         
+        // Initialize state
         this.isMinimized = false;
+        this.isOpen = false;
 
         // Setup event listeners
         this.setupEventListeners();
+
+        // Initialize context
         this.context = {
             lastQuery: null,
             destination: null,
@@ -100,13 +106,17 @@ class Chatbot {
     }
 
     setupEventListeners() {
+        // Chat input handlers
         this.sendButton.addEventListener('click', () => this.handleSend());
         this.input.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') this.handleSend();
         });
 
+        // Chat window control handlers
         this.minimizeButton.addEventListener('click', () => this.toggleMinimize());
         this.closeButton.addEventListener('click', () => this.closeChat());
+        this.openChatButton.addEventListener('click', () => this.openChat());
+        
         document.querySelector('.chatbot-header').addEventListener('click', (e) => {
             if (!e.target.closest('button')) this.toggleMinimize();
         });
@@ -385,14 +395,34 @@ Prices may vary based on season and availability. Would you like to check specif
 
     closeChat() {
         this.container.style.display = 'none';
+        this.openChatButton.style.display = 'flex';
+        this.isOpen = false;
+    }
+
+    openChat() {
+        if (!isLoggedIn()) {
+            window.location.href = 'login.html?return=' + encodeURIComponent(window.location.href);
+            return;
+        }
+        this.container.style.display = 'flex';
+        this.openChatButton.style.display = 'none';
+        this.isOpen = true;
+        if (!this.hasShownWelcome) {
+            this.showWelcomeMessage();
+            this.hasShownWelcome = true;
+        }
     }
 }
 
 // Initialize chatbot when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
-    // Check if user is logged in before initializing chatbot
-    if (!isLoggedIn()) {
-        return; // Don't initialize chatbot if user is not logged in
+    const chatbot = new Chatbot();
+    
+    // Show open chat button if logged in
+    const openChatButton = document.querySelector('#open-chat');
+    if (isLoggedIn()) {
+        openChatButton.style.display = 'flex';
+    } else {
+        openChatButton.style.display = 'none';
     }
-    new Chatbot();
 });
