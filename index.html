@@ -802,5 +802,26 @@
     <button id="back-to-top" class="fixed bottom-6 right-6 z-50 bg-blue-600 text-white w-12 h-12 rounded-full shadow-lg cursor-pointer hover:bg-blue-700 transition-all duration-300 flex items-center justify-center transform hover:scale-110 opacity-0 translate-y-10">
         <i class="fas fa-arrow-up text-lg"></i>
     </button>
+
+    <!-- Chatbot -->
+    <div class="chatbot-container" style="display: none;">
+        <div class="chatbot-header">
+            <h3><i class="fas fa-robot"></i> AirBooker Assistant</h3>
+            <div class="controls">
+                <button id="minimize-chat"><i class="fas fa-minus"></i></button>
+                <button id="close-chat"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+        <div class="chatbot-messages"></div>
+        <div class="chatbot-input">
+            <input type="text" placeholder="Type your message...">
+            <button><i class="fas fa-paper-plane"></i> Send</button>
+        </div>
+    </div>
+
+    <!-- Chat Trigger Button -->
+    <button id="open-chat" class="fixed bottom-6 left-6 z-50 bg-blue-600 text-white px-4 py-2 rounded-full shadow-lg cursor-pointer hover:bg-blue-700 transition-all duration-300 flex items-center justify-center transform hover:scale-110">
+        <i class="fas fa-comments mr-2"></i> Chat with Us
+    </button>
 </body>
 </html>
