@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Package - Step 1</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Progress Bar -->
+        <div class="mb-8">
+            <div class="flex justify-between items-center">
+                <div class="flex-1">
+                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                        <div class="bg-blue-600 h-2.5 rounded-full" style="width: 25%"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-between mt-2">
+                <span class="text-sm font-medium text-blue-600">Step 1: Package</span>
+                <span class="text-sm text-gray-400">Step 2: Flight</span>
+                <span class="text-sm text-gray-400">Step 3: Passenger</span>
+                <span class="text-sm text-gray-400">Step 4: Payment</span>
+            </div>
+        </div>
+
+        <!-- Package Selection -->
+        <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
+            <h2 class="text-2xl font-bold mb-6 text-center">Select Your Package</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Family Package -->
+                <div onclick="selectPackage('family')" class="cursor-pointer bg-white border-2 rounded-xl p-6 hover:border-blue-500 hover:shadow-lg transition-all duration-300">
+                    <div class="text-center">
+                        <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-users text-3xl text-blue-600"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Family Package</h3>
+                        <div class="text-2xl font-bold text-blue-600 mb-4">20% OFF</div>
+                        <ul class="text-left space-y-2">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                20% off for 4+ travelers
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                Free meals for kids
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                Priority boarding
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Business Package -->
+                <div onclick="selectPackage('business')" class="cursor-pointer bg-white border-2 rounded-xl p-6 hover:border-purple-500 hover:shadow-lg transition-all duration-300">
+                    <div class="text-center">
+                        <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-briefcase text-3xl text-purple-600"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Business Package</h3>
+                        <div class="text-2xl font-bold text-purple-600 mb-4">30% OFF</div>
+                        <ul class="text-left space-y-2">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                30% off on business class
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                Lounge access
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                Extra baggage
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Student Package -->
+                <div onclick="selectPackage('student')" class="cursor-pointer bg-white border-2 rounded-xl p-6 hover:border-green-500 hover:shadow-lg transition-all duration-300">
+                    <div class="text-center">
+                        <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-graduation-cap text-3xl text-green-600"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Student Package</h3>
+                        <div class="text-2xl font-bold text-green-600 mb-4">15% OFF</div>
+                        <ul class="text-left space-y-2">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                15% off with student ID
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                Flexible booking
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                Extra baggage
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function selectPackage(packageType) {
+            // Store selected package in sessionStorage
+            sessionStorage.setItem('selectedPackage', packageType);
+            // Redirect to flight details page
+            window.location.href = 'step2_flight.html';
+        }
+    </script>
+</body>
+</html>

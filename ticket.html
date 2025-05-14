@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Ticket</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        @media print {
+            .no-print {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 p-8">
+    <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-8" id="ticket">
+        <!-- Company Logo -->
+        <div class="flex justify-between items-center mb-8">
+            <img src="img/air.PNG" alt="Company Logo" class="h-20">
+            <div class="relative">
+                <img src="img/paid.jpg" alt="Paid Stamp" class="h-24 opacity-50">
+            </div>
+        </div>
+
+        <h1 class="text-3xl font-bold text-center mb-8">Flight Ticket</h1>
+        
+        <div class="grid grid-cols-2 gap-8">
+            <div>
+                <h2 class="text-xl font-semibold mb-4">Passenger Details</h2>
+                <div id="passengerInfo" class="space-y-2"></div>
+            </div>
+            <div>
+                <h2 class="text-xl font-semibold mb-4">Flight Details</h2>
+                <div id="flightInfo" class="space-y-2"></div>
+            </div>
+        </div>
+
+        <div class="mt-8 border-t pt-4">
+            <h2 class="text-xl font-semibold mb-4">Payment Information</h2>
+            <div id="paymentInfo" class="space-y-2"></div>
+        </div>
+
+        <div class="mt-8 text-center text-sm text-gray-500">
+            <p>Thank you for choosing our airline. Have a pleasant journey!</p>
+            <p>For any assistance, contact us at support@airbooker.com</p>
+        </div>
+    </div>
+
+    <div class="mt-8 text-center no-print">
+        <button onclick="generatePDF()" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-200">
+            Download Ticket PDF
+        </button>
+    </div>
+
+    <script>
+        window.onload = function() {
+            displayTicketInfo();
+        };
+
+        function displayTicketInfo() {
+            const passengerDetails = JSON.parse(sessionStorage.getItem('passengerDetails'));
+            const flightDetails = JSON.parse(sessionStorage.getItem('flightDetails'));
+            const paymentDetails = JSON.parse(sessionStorage.getItem('paymentDetails'));
+            const selectedPackage = sessionStorage.getItem('selectedPackage');
+
+            // Display passenger info
+            document.getElementById('passengerInfo').innerHTML = `
+                <p><strong>Name:</strong> ${passengerDetails.firstName} ${passengerDetails.lastName}</p>
+                <p><strong>Email:</strong> ${passengerDetails.email}</p>
+                <p><strong>Phone:</strong> ${passengerDetails.phone}</p>
+                <p><strong>Passport:</strong> ${passengerDetails.passport}</p>
+                <p><strong>Nationality:</strong> ${passengerDetails.nationality}</p>
+            `;
+
+            // Display flight info
+            document.getElementById('flightInfo').innerHTML = `
+                <p><strong>From:</strong> ${flightDetails.fromCity}</p>
+                <p><strong>To:</strong> ${flightDetails.toCity}</p>
+                <p><strong>Departure:</strong> ${flightDetails.departureDate}</p>
+                <p><strong>Class:</strong> ${flightDetails.flightClass}</p>
+                <p><strong>Package:</strong> ${selectedPackage.charAt(0).toUpperCase() + selectedPackage.slice(1)}</p>
+            `;
+
+            // Display payment info
+            let basePrice = 500;
+            let discount = 0;
+            switch(selectedPackage) {
+                case 'family': discount = 0.20; break;
+                case 'business': discount = 0.30; break;
+                case 'student': discount = 0.15; break;
+            }
+            const totalAmount = basePrice * (1 - discount);
+
+            document.getElementById('paymentInfo').innerHTML = `
+                <p><strong>Card Holder:</strong> ${paymentDetails.cardholderName}</p>
+                <p><strong>Card Number:</strong> **** **** **** ${paymentDetails.cardNumber.slice(-4)}</p>
+                <p><strong>Total Amount:</strong> $${totalAmount}</p>
+                <p><strong>Status:</strong> <span class="text-green-600 font-semibold">PAID</span></p>
+            `;
+        }
+
+        function generatePDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            const ticket = document.getElementById('ticket');
+
+            // Add company logo
+            doc.addImage('img/air.PNG', 'PNG', 20, 10, 40, 20);
+            
+            // Add paid stamp
+            doc.addImage('img/paid.jpg', 'JPEG', 150, 10, 40, 40);
+
+            // Add ticket content
+            doc.html(ticket, {
+                callback: function(doc) {
+                    doc.save('flight-ticket.pdf');
+                },
+                x: 15,
+                y: 40,
+                width: 180
+            });
+        }
+    </script>
+</body>
+</html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Ticket</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto px-4 py-8">
+        <div class="max-w-2xl mx-auto">
+            <!-- Success Message -->
+            <div class="text-center mb-8">
+                <div class="text-green-600 text-5xl mb-4">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-gray-800">Payment Successful!</h2>
+                <p class="text-gray-600">Your ticket has been generated</p>
+            </div>
+
+            <!-- E-Ticket -->
+            <div class="bg-white rounded-lg shadow-lg p-6" id="ticketContainer">
+                <div class="border-b pb-6 mb-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-2xl font-bold">E-Ticket</h3>
+                        <div class="text-right">
+                            <p class="text-sm text-gray-600">Booking Reference:</p>
+                            <p class="font-bold" id="bookingRef"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Passenger Information -->
+                <div class="mb-6">
+                    <h4 class="font-semibold mb-2">Passenger Information</h4>
+                    <div class="grid grid-cols-2 gap-4" id="passengerInfo"></div>
+                </div>
+
+                <!-- Flight Information -->
+                <div class="mb-6">
+                    <h4 class="font-semibold mb-2">Flight Information</h4>
+                    <div id="flightInfo"></div>
+                </div>
+
+                <!-- Package Details -->
+                <div class="mb-6">
+                    <h4 class="font-semibold mb-2">Package Details</h4>
+                    <div id="packageInfo"></div>
+                </div>
+
+                <!-- Download Button -->
+                <div class="text-center mt-8">
+                    <button onclick="window.print()" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-200">
+                        <i class="fas fa-download mr-2"></i>Download Ticket
+                    </button>
+                </div>
+            </div>
+
+            <!-- Return to Home -->
+            <div class="text-center mt-6">
+                <a href="index.html" class="text-blue-600 hover:text-blue-800">
+                    <i class="fas fa-arrow-left mr-2"></i>Return to Home
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function() {
+            // Generate booking reference
+            const bookingRef = 'PK' + Date.now().toString().slice(-6);
+            document.getElementById('bookingRef').textContent = bookingRef;
+
+            // Get stored information
+            const passengerDetails = JSON.parse(sessionStorage.getItem('passengerDetails'));
+            const flightDetails = JSON.parse(sessionStorage.getItem('flightDetails'));
+            const selectedPackage = sessionStorage.getItem('selectedPackage');
+
+            // Display passenger information
+            const passengerInfo = document.getElementById('passengerInfo');
+            passengerInfo.innerHTML = `
+                <div>
+                    <p class="text-gray-600">Name</p>
+                    <p class="font-medium">${passengerDetails.firstName} ${passengerDetails.lastName}</p>
+                </div>
+                <div>
+                    <p class="text-gray-600">Passport</p>
+                    <p class="font-medium">${passengerDetails.passportNumber}</p>
+                </div>
+                <div>
+                    <p class="text-gray-600">Email</p>
+                    <p class="font-medium">${passengerDetails.email}</p>
+                </div>
+                <div>
+                    <p class="text-gray-600">Phone</p>
+                    <p class="font-medium">${passengerDetails.phone}</p>
+                </div>
+            `;
+
+            // Display flight information
+            const flightInfo = document.getElementById('flightInfo');
+            flightInfo.innerHTML = `
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <p class="text-gray-600">From</p>
+                        <p class="font-medium">${flightDetails.fromCity}</p>
+                    </div>
+                    <div>
+                        <p class="text-gray-600">To</p>
+                        <p class="font-medium">${flightDetails.toCity}</p>
+                    </div>
+                    <div>
+                        <p class="text-gray-600">Departure Date</p>
+                        <p class="font-medium">${flightDetails.departureDate}</p>
+                    </div>
+                    <div>
+                        <p class="text-gray-600">Class</p>
+                        <p class="font-medium">${flightDetails.flightClass}</p>
+                    </div>
+                </div>
+            `;
+
+            // Display package information
+            const packageInfo = document.getElementById('packageInfo');
+            packageInfo.innerHTML = `
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <p class="text-gray-600">Package Type</p>
+                        <p class="font-medium capitalize">${selectedPackage} Package</p>
+                    </div>
+                    <div>
+                        <p class="text-gray-600">Discount Applied</p>
+                        <p class="font-medium">${getDiscount(selectedPackage)}% OFF</p>
+                    </div>
+                </div>
+            `;
+
+            // Clear session storage
+            // sessionStorage.clear();
+        };
+
+        function getDiscount(packageType) {
+            switch(packageType) {
+                case 'family':
+                    return 20;
+                case 'business':
+                    return 30;
+                case 'student':
+                    return 15;
+                default:
+                    return 0;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passenger Information - Step 3</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Progress Bar -->
+        <div class="mb-8">
+            <div class="flex justify-between items-center">
+                <div class="flex-1">
+                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                        <div class="bg-blue-600 h-2.5 rounded-full" style="width: 75%"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-between mt-2">
+                <span class="text-sm text-green-600">✓ Package</span>
+                <span class="text-sm text-green-600">✓ Flight</span>
+                <span class="text-sm font-medium text-blue-600">Step 3: Passenger</span>
+                <span class="text-sm text-gray-400">Step 4: Payment</span>
+            </div>
+        </div>
+
+        <!-- Passenger Form -->
+        <div class="bg-white rounded-lg shadow-lg p-6">
+            <h2 class="text-2xl font-bold mb-6 text-center">Passenger Information</h2>
+            <form id="passengerForm" class="space-y-6">
+                <!-- Primary Passenger -->
+                <div class="space-y-4">
+                    <h3 class="text-lg font-semibold">Primary Passenger</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-gray-700 mb-2">First Name</label>
+                            <input type="text" id="firstName" required class="w-full p-3 border rounded-lg">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2">Last Name</label>
+                            <input type="text" id="lastName" required class="w-full p-3 border rounded-lg">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-gray-700 mb-2">Email</label>
+                            <input type="email" id="email" required class="w-full p-3 border rounded-lg">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2">Phone</label>
+                            <input type="tel" id="phone" required class="w-full p-3 border rounded-lg">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-gray-700 mb-2">Date of Birth</label>
+                            <input type="date" id="dob" required class="w-full p-3 border rounded-lg">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2">Gender</label>
+                            <select id="gender" required class="w-full p-3 border rounded-lg">
+                                <option value="">Select Gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2">Nationality</label>
+                            <input type="text" id="nationality" required class="w-full p-3 border rounded-lg">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Passport Information -->
+                <div class="space-y-4">
+                    <h3 class="text-lg font-semibold">Passport Information</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-gray-700 mb-2">Passport Number</label>
+                            <input type="text" id="passportNumber" required class="w-full p-3 border rounded-lg">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2">Passport Expiry Date</label>
+                            <input type="date" id="passportExpiry" required class="w-full p-3 border rounded-lg">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Buttons -->
+                <div class="flex justify-between pt-6">
+                    <button type="button" onclick="window.location.href='step2_flight.html'" class="bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600 transition duration-200">
+                        Back
+                    </button>
+                    <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-200">
+                        Continue to Payment
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Check if previous steps are completed
+        window.onload = function() {
+            const selectedPackage = sessionStorage.getItem('selectedPackage');
+            const flightDetails = sessionStorage.getItem('flightDetails');
+            if (!selectedPackage || !flightDetails) {
+                window.location.href = 'step1_package.html';
+            }
+        };
+
+        // Handle form submission
+        document.getElementById('passengerForm').onsubmit = function(e) {
+            e.preventDefault();
+            
+            // Store passenger details in sessionStorage
+            const passengerDetails = {
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                dob: document.getElementById('dob').value,
+                gender: document.getElementById('gender').value,
+                nationality: document.getElementById('nationality').value,
+                passportNumber: document.getElementById('passportNumber').value,
+                passportExpiry: document.getElementById('passportExpiry').value
+            };
+            
+            sessionStorage.setItem('passengerDetails', JSON.stringify(passengerDetails));
+            
+            // Redirect to payment page
+            window.location.href = 'step4_payment.html';
+        };
+    </script>
+</body>
+</html>

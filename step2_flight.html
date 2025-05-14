@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Details - Step 2</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Progress Bar -->
+        <div class="mb-8">
+            <div class="flex justify-between items-center">
+                <div class="flex-1">
+                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                        <div class="bg-blue-600 h-2.5 rounded-full" style="width: 50%"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-between mt-2">
+                <span class="text-sm text-green-600">✓ Package</span>
+                <span class="text-sm font-medium text-blue-600">Step 2: Flight</span>
+                <span class="text-sm text-gray-400">Step 3: Passenger</span>
+                <span class="text-sm text-gray-400">Step 4: Payment</span>
+            </div>
+        </div>
+
+        <!-- Flight Details Form -->
+        <div class="bg-white rounded-lg shadow-lg p-6">
+            <h2 class="text-2xl font-bold mb-6 text-center">Flight Details</h2>
+            <form id="flightForm" class="space-y-6">
+                <!-- From/To Selection -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-gray-700 mb-2">From</label>
+                        <select id="fromCity" class="w-full p-3 border rounded-lg" required>
+                            <option value="">Select Departure City</option>
+                            <option value="karachi">Karachi (KHI)</option>
+                            <option value="lahore">Lahore (LHE)</option>
+                            <option value="islamabad">Islamabad (ISB)</option>
+                            <option value="peshawar">Peshawar (PEW)</option>
+                            <option value="quetta">Quetta (UET)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 mb-2">To</label>
+                        <select id="toCity" class="w-full p-3 border rounded-lg" required>
+                            <option value="">Select Destination City</option>
+                            <option value="dubai">Dubai (DXB)</option>
+                            <option value="abudhabi">Abu Dhabi (AUH)</option>
+                            <option value="sharjah">Sharjah (SHJ)</option>
+                            <option value="doha">Doha (DOH)</option>
+                            <option value="riyadh">Riyadh (RUH)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Date Selection -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-gray-700 mb-2">Departure Date</label>
+                        <input type="date" id="departureDate" class="w-full p-3 border rounded-lg" required>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 mb-2">Return Date</label>
+                        <input type="date" id="returnDate" class="w-full p-3 border rounded-lg">
+                    </div>
+                </div>
+
+                <!-- Flight Class -->
+                <div>
+                    <label class="block text-gray-700 mb-2">Flight Class</label>
+                    <select id="flightClass" class="w-full p-3 border rounded-lg" required>
+                        <option value="economy">Economy</option>
+                        <option value="business">Business</option>
+                        <option value="first">First Class</option>
+                    </select>
+                </div>
+
+                <!-- Navigation Buttons -->
+                <div class="flex justify-between pt-6">
+                    <button type="button" onclick="window.location.href='step1_package.html'" class="bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600 transition duration-200">
+                        Back
+                    </button>
+                    <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-200">
+                        Continue to Passenger Info
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Check if package is selected
+        window.onload = function() {
+            const selectedPackage = sessionStorage.getItem('selectedPackage');
+            if (!selectedPackage) {
+                window.location.href = 'step1_package.html';
+            }
+        };
+
+        // Handle form submission
+        document.getElementById('flightForm').onsubmit = function(e) {
+            e.preventDefault();
+            
+            // Store flight details in sessionStorage
+            const flightDetails = {
+                fromCity: document.getElementById('fromCity').value,
+                toCity: document.getElementById('toCity').value,
+                departureDate: document.getElementById('departureDate').value,
+                returnDate: document.getElementById('returnDate').value,
+                flightClass: document.getElementById('flightClass').value
+            };
+            
+            sessionStorage.setItem('flightDetails', JSON.stringify(flightDetails));
+            
+            // Redirect to passenger info page
+            window.location.href = 'step3_passenger.html';
+        };
+    </script>
+</body>
+</html>

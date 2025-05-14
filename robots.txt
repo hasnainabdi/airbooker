@@ -1,0 +1,24 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /private/
+Disallow: /api/
+
+Sitemap: https://airbooker.com/sitemap.xml
+
+# Allow search engines to crawl JavaScript and CSS files
+Allow: /*.js$
+Allow: /*.css$
+
+# Prevent crawling of search result pages
+Disallow: /*?q=*
+Disallow: /*?s=*
+Disallow: /*?search=*
+
+# Prevent crawling of user-specific pages
+Disallow: /user/
+Disallow: /account/
+Disallow: /profile/
+
+# Crawl-delay for all bots
+Crawl-delay: 10

@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AirBooker Airlines - Your Journey Begins Here | Book Flights Online</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Book your flights with AirBooker Airlines. Best deals on international & domestic flights. Easy booking, secure payments, and 24/7 customer support.">
+    <meta name="keywords" content="flight booking, airline tickets, cheap flights, air travel, international flights, domestic flights, business class, family packages, student discounts, flight deals, online booking, travel packages, air tickets, AirBooker, airline reservations, flight status, web check-in, manage booking, flight schedule">
+    <meta name="author" content="Muhammad Hasnain">
+    
+    <!-- Open Graph Meta Tags for Social Media -->
+    <meta property="og:title" content="AirBooker Airlines - Book Flights Online">
+    <meta property="og:description" content="Find and book the best flight deals. Easy booking process, secure payments, and 24/7 customer support.">
+    <meta property="og:image" content="img/air.PNG">
+    <meta property="og:url" content="https://airbooker.com">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AirBooker Airlines - Book Flights Online">
+    <meta name="twitter:description" content="Find and book the best flight deals. Easy booking process, secure payments, and 24/7 customer support.">
+    <meta name="twitter:image" content="img/air.PNG">
+    
+    <!-- Additional SEO Meta Tags -->
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+    <meta name="revisit-after" content="7 days">
+    <meta name="theme-color" content="#2563EB">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://airbooker.com">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/chatbot.css">
+    <script src="js/auth.js" defer></script>
+    <script src="js/chatbot.js" defer></script>
+</head>
+<body class="bg-gray-50">
+    <!-- Top Bar -->
+    <div class="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-2">
+        <div class="container mx-auto px-4 flex justify-between items-center text-sm">
+            <div class="flex items-center space-x-4">
+                <span><i class="fas fa-phone-alt"></i> +1 234 567 890</span>
+                <span><i class="fas fa-envelope"></i> support@airbooker.com</span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="#" class="hover:text-blue-200"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="hover:text-blue-200"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="hover:text-blue-200"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- News Ticker -->
+    <div class="bg-blue-600 text-white py-2 relative overflow-hidden">
+        <div class="ticker-wrapper">
+            <div class="ticker-content">
+                <span class="mx-8"><i class="fas fa-fire text-orange-400"></i> Special offer: 20% off on international flights!</span>
+                <span class="mx-8"><i class="fas fa-plane text-sky-400"></i> New route announced: Direct flights to Maldives</span>
+                <span class="mx-8"><i class="fas fa-star text-yellow-400"></i> Download our mobile app for exclusive deals</span>
+                <span class="mx-8"><i class="fas fa-bolt text-yellow-400"></i> Flash sale: Business class upgrades from $199</span>
+                <span class="mx-8"><i class="fas fa-gift text-pink-400"></i> Free lounge access for business class bookings</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <!-- Logo -->
+                <div class="flex items-center space-x-4">
+                    <a href="index.html" class="flex items-center space-x-2">
+                        <img src="img/air.PNG" alt="AirBooker Logo" class="h-12">
+                    </a>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600 transition duration-300 flex items-center space-x-1">
+                        <i class="fas fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    <a href="#destinations" class="text-gray-700 hover:text-blue-600 transition duration-300 flex items-center space-x-1">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Destinations</span>
+                    </a>
+                    <a href="#contact" class="text-gray-700 hover:text-blue-600 transition duration-300 flex items-center space-x-1">
+                        <i class="fas fa-envelope"></i>
+                        <span>Contact</span>
+                    </a>
+                    <button onclick="checkLoginAndBook()" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300 flex items-center space-x-1">
+                        <i class="fas fa-plane"></i>
+                        <span>Book Flight</span>
+                    </button>
+                    <a href="signup.html" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-300 flex items-center">
+                        <i class="fas fa-user-plus mr-2"></i> Sign Up
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="lg:hidden text-gray-600 hover:text-blue-600 focus:outline-none" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="lg:hidden hidden bg-white border-t shadow-lg" id="mobile-menu">
+        <div class="container mx-auto px-4 py-4 space-y-4">
+            <a href="index.html" class="block text-gray-700 hover:text-blue-600 transition duration-300">
+                <i class="fas fa-home mr-2"></i> Home
+            </a>
+            <button onclick="checkLoginAndBook()" class="block text-blue-600 font-semibold w-full text-left">
+                <i class="fas fa-plane mr-2"></i> Book Flight
+            </button>
+            <a href="#destinations" class="block text-gray-700 hover:text-blue-600 transition duration-300">
+                <i class="fas fa-map-marker-alt mr-2"></i> Destinations
+            </a>
+            <a href="#contact" class="block text-gray-700 hover:text-blue-600 transition duration-300">
+                <i class="fas fa-envelope mr-2"></i> Contact
+            </a>
+        </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="md:hidden hidden bg-blue-600 text-white w-full" id="mobile-menu">
+        <div class="container mx-auto px-4 py-2">
+            <a href="index.html" class="text-gray-700 hover:text-blue-600 transition duration-300">Home</a>
+            <button onclick="checkLoginAndBook()" class="text-blue-600 font-semibold">Book Flight</button>
+            <a href="#contact" class="text-gray-700 hover:text-blue-600 transition duration-300">Contact</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home">
+        <div class="relative h-[600px]">
+            <div class="absolute inset-0 bg-[url('img/airbooker-airline.png')] bg-cover bg-center"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-black/60 to-black/40"></div>
+            <div class="relative container mx-auto px-4 h-full flex items-center">
+                <div class="text-white max-w-2xl slide-in-left">
+                    <h1 class="text-5xl font-bold mb-4">Explore the World with AirBooker</h1>
+                    <p class="text-xl mb-8">Discover amazing destinations and create unforgettable memories</p>
+                    <div class="flex space-x-4">
+                        <button onclick="checkLoginAndBook()" class="bg-blue-600 text-white px-8 py-3 rounded-full hover:bg-blue-700 transition duration-300 flex items-center">
+                            <i class="fas fa-plane-departure mr-2"></i> Book Now
+                        </button>
+                        <a href="#destinations" class="bg-white text-blue-600 px-8 py-3 rounded-full hover:bg-gray-100 transition duration-300 flex items-center">
+                            <i class="fas fa-map-marker-alt mr-2"></i> Explore
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Alert Notifications -->
+    <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 fixed top-20 right-4 z-50 shadow-lg rounded-lg max-w-md transform transition-transform duration-500 slide-in-right" id="alert-notification">
+        <div class="flex">
+            <div class="flex-shrink-0">
+                <i class="fas fa-bell text-yellow-400"></i>
+            </div>
+            <div class="ml-3">
+                <p class="text-sm text-yellow-700">
+                    🔥 Flash Sale: Up to 40% off on international flights! Book before midnight.
+                    <button class="ml-2 text-yellow-900 hover:text-yellow-600" onclick="this.parentElement.parentElement.parentElement.remove()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Featured Destinations Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Featured Destinations</h2>
+            
+            <!-- Destinations Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                <!-- Dubai -->
+                <div class="group relative rounded-2xl overflow-hidden shadow-lg transform hover:-translate-y-2 transition-all duration-300">
+                    <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c" alt="Dubai" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                        <h3 class="text-2xl font-bold mb-2">Dubai</h3>
+                        <p class="mb-2 opacity-90">Experience luxury in the desert</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xl font-bold">From PKR 75,000</span>
+                            <span class="bg-red-500 px-3 py-1 rounded-full text-sm">-30% OFF</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- London -->
+                <div class="group relative rounded-2xl overflow-hidden shadow-lg transform hover:-translate-y-2 transition-all duration-300">
+                    <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad" alt="London" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                        <h3 class="text-2xl font-bold mb-2">London</h3>
+                        <p class="mb-2 opacity-90">Royal heritage awaits</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xl font-bold">From PKR 150,000</span>
+                            <span class="bg-red-500 px-3 py-1 rounded-full text-sm">-25% OFF</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Istanbul -->
+                <div class="group relative rounded-2xl overflow-hidden shadow-lg transform hover:-translate-y-2 transition-all duration-300">
+                    <img src="https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b" alt="Istanbul" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                        <h3 class="text-2xl font-bold mb-2">Istanbul</h3>
+                        <p class="mb-2 opacity-90">Where East meets West</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xl font-bold">From PKR 90,000</span>
+                            <span class="bg-red-500 px-3 py-1 rounded-full text-sm">-20% OFF</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Special Offers Section -->
+            <div class="bg-white rounded-2xl p-8 shadow-lg mb-16">
+                <h3 class="text-2xl font-bold mb-6 text-center">Special Offers & Packages</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Family Package -->
+                    <div class="bg-blue-50 rounded-xl p-6 border border-blue-100">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-users text-2xl text-blue-600 mr-3"></i>
+                            <h4 class="text-xl font-semibold">Family Package</h4>
+                        </div>
+                        <ul class="space-y-2 mb-4">
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> 20% off for 4+ travelers</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Free meals for kids</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Priority boarding</li>
+                        </ul>
+                        <button onclick="checkLoginAndBook('family')" class="block text-center w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition duration-300">Book Now</button>
+                    </div>
+
+                    <!-- Business Class -->
+                    <div class="bg-purple-50 rounded-xl p-6 border border-purple-100">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-briefcase text-2xl text-purple-600 mr-3"></i>
+                            <h4 class="text-xl font-semibold">Business Class</h4>
+                        </div>
+                        <ul class="space-y-2 mb-4">
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> 30% off on long haul</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Lounge access</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Extra baggage</li>
+                        </ul>
+                        <button onclick="checkLoginAndBook('business')" class="block text-center w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition duration-300">Book Now</button>
+                    </div>
+
+                    <!-- Student Discount -->
+                    <div class="bg-green-50 rounded-xl p-6 border border-green-100">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-graduation-cap text-2xl text-green-600 mr-3"></i>
+                            <h4 class="text-xl font-semibold">Student Discount</h4>
+                        </div>
+                        <ul class="space-y-2 mb-4">
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> 15% off with ID</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Flexible booking</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Extra baggage</li>
+                        </ul>
+                        <button onclick="checkLoginAndBook('student')" class="block text-center w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition duration-300">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trust Badges -->
+            <div class="text-center space-y-6">
+                <h3 class="text-2xl font-bold mb-8">Why Book With Us?</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                    <!-- Secure Payments -->
+                    <div class="flex flex-col items-center">
+                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-lock text-2xl text-blue-600"></i>
+                        </div>
+                        <h4 class="font-semibold mb-2">Secure Payments</h4>
+                        <p class="text-sm text-gray-600">SSL Encrypted</p>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Verified_by_Visa.svg/1200px-Verified_by_Visa.svg.png" alt="Verified by Visa" class="h-8 mt-2">
+                    </div>
+
+                    <!-- Best Price -->
+                    <div class="flex flex-col items-center">
+                        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-tag text-2xl text-green-600"></i>
+                        </div>
+                        <h4 class="font-semibold mb-2">Best Price Guarantee</h4>
+                        <p class="text-sm text-gray-600">Always get the best deal</p>
+                    </div>
+
+                    <!-- 24/7 Support -->
+                    <div class="flex flex-col items-center">
+                        <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-headset text-2xl text-purple-600"></i>
+                        </div>
+                        <h4 class="font-semibold mb-2">24/7 Support</h4>
+                        <p class="text-sm text-gray-600">Always here to help</p>
+                    </div>
+
+                    <!-- IATA Certified -->
+                    <div class="flex flex-col items-center">
+                        <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-certificate text-2xl text-yellow-600"></i>
+                        </div>
+                        <h4 class="font-semibold mb-2">IATA Certified</h4>
+                        <p class="text-sm text-gray-600">Licensed Travel Agency</p>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/IATA_logo.svg/1200px-IATA_logo.svg.png" alt="IATA Logo" class="h-8 mt-2">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Popular Destinations -->
+    <section id="destinations" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8">Popular Destinations</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover-scale float">
+                    <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?ixlib=rb-4.0.3" alt="Paris" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold mb-2">Paris, France</h3>
+                        <p class="text-gray-600 mb-4">Experience the city of love and culture</p>
+                        <a href="#" class="text-blue-600 hover:text-blue-800">View Flights →</a>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover-scale float">
+                    <img src="https://images.unsplash.com/photo-1538970272646-f61fabb3a8a2?ixlib=rb-4.0.3" alt="Dubai" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold mb-2">Dubai, UAE</h3>
+                        <p class="text-gray-600 mb-4">Discover luxury in the desert</p>
+                        <a href="#" class="text-blue-600 hover:text-blue-800">View Flights →</a>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover-scale float">
+                    <img src="https://images.unsplash.com/photo-1533929736458-ca588d08c8be?ixlib=rb-4.0.3" alt="Tokyo" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold mb-2">Tokyo, Japan</h3>
+                        <p class="text-gray-600 mb-4">Explore the blend of tradition and technology</p>
+                        <a href="#" class="text-blue-600 hover:text-blue-800">View Flights →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coupon Codes Section -->
+<section class="py-16 bg-gradient-to-r from-blue-600 to-blue-800 text-white">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-8">Exclusive Coupon Codes</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-white text-gray-800 rounded-lg p-6 transform hover:-translate-y-2 transition duration-300">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <h3 class="text-xl font-bold mb-2">First Flight</h3>
+                        <p class="text-gray-600">20% off on your first booking</p>
+                    </div>
+                    <i class="fas fa-plane-departure text-2xl text-blue-600"></i>
+                </div>
+                <div class="bg-gray-100 p-3 rounded-lg text-center mb-4">
+                    <span class="font-mono font-bold text-xl">FIRST20</span>
+                </div>
+                <button class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 copy-code" data-code="FIRST20">
+                    <i class="fas fa-copy mr-2"></i> Copy Code
+                </button>
+            </div>
+            <div class="bg-white text-gray-800 rounded-lg p-6 transform hover:-translate-y-2 transition duration-300">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <h3 class="text-xl font-bold mb-2">Family Package</h3>
+                        <p class="text-gray-600">15% off on 4+ tickets</p>
+                    </div>
+                    <i class="fas fa-users text-2xl text-blue-600"></i>
+                </div>
+                <div class="bg-gray-100 p-3 rounded-lg text-center mb-4">
+                    <span class="font-mono font-bold text-xl">FAM15</span>
+                </div>
+                <button class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 copy-code" data-code="FAM15">
+                    <i class="fas fa-copy mr-2"></i> Copy Code
+                </button>
+            </div>
+            <div class="bg-white text-gray-800 rounded-lg p-6 transform hover:-translate-y-2 transition duration-300">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <h3 class="text-xl font-bold mb-2">Weekend Special</h3>
+                        <p class="text-gray-600">10% off on weekend flights</p>
+                    </div>
+                    <i class="fas fa-calendar-alt text-2xl text-blue-600"></i>
+                </div>
+                <div class="bg-gray-100 p-3 rounded-lg text-center mb-4">
+                    <span class="font-mono font-bold text-xl">WKND10</span>
+                </div>
+                <button class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 copy-code" data-code="WKND10">
+                    <i class="fas fa-copy mr-2"></i> Copy Code
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Tools Section -->
+    <section id="tools" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12">Quick Tools</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Flight Status Tool -->
+                <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-plane-departure text-4xl text-blue-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-2">Flight Status</h3>
+                    <p class="text-gray-600 text-center mb-4">Track your flight in real-time</p>
+                    <a href="flight-status.html" class="block w-full text-center bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                        Check Status
+                    </a>
+                </div>
+
+                <!-- Web Check-in Tool -->
+                <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-check-circle text-4xl text-green-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-2">Web Check-in</h3>
+                    <p class="text-gray-600 text-center mb-4">Check-in online 48h before flight</p>
+                    <a href="web-checkin.html" class="block w-full text-center bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition-colors">
+                        Check-in Now
+                    </a>
+                </div>
+
+                <!-- Manage Booking Tool -->
+                <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-calendar-alt text-4xl text-purple-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-2">Manage Booking</h3>
+                    <p class="text-gray-600 text-center mb-4">View or modify your reservation</p>
+                    <a href="manage-booking.html" class="block w-full text-center bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition-colors">
+                        Manage Now
+                    </a>
+                </div>
+
+                <!-- Flight Schedule Tool -->
+                <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-map-marker-alt text-4xl text-red-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-2">Flight Schedule</h3>
+                    <p class="text-gray-600 text-center mb-4">View all flight schedules</p>
+                    <a href="schedule.html" class="block w-full text-center bg-red-600 text-white py-2 rounded-lg hover:bg-red-700 transition-colors">
+                        View Schedule
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Loyalty Program -->
+<section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-8">AirBooker Rewards</h2>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                <div class="text-4xl text-blue-600 mb-4">
+                    <i class="fas fa-medal"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">Silver Tier</h3>
+                <ul class="text-gray-600 space-y-2">
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Priority Check-in</li>
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Extra Baggage 5kg</li>
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Lounge Access</li>
+                </ul>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                <div class="text-4xl text-yellow-600 mb-4">
+                    <i class="fas fa-trophy"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">Gold Tier</h3>
+                <ul class="text-gray-600 space-y-2">
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>All Silver Benefits</li>
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Free Seat Selection</li>
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Priority Boarding</li>
+                </ul>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                <div class="text-4xl text-purple-600 mb-4">
+                    <i class="fas fa-crown"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">Platinum Tier</h3>
+                <ul class="text-gray-600 space-y-2">
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>All Gold Benefits</li>
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Companion Pass</li>
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Free Upgrades</li>
+                </ul>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                <div class="text-4xl text-blue-600 mb-4">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">Mobile App</h3>
+                <p class="text-gray-600 mb-4">Download our app to track your rewards</p>
+                <div class="flex justify-center space-x-4">
+                    <a href="#" class="text-3xl text-gray-800 hover:text-blue-600">
+                        <i class="fab fa-apple"></i>
+                    </a>
+                    <a href="#" class="text-3xl text-gray-800 hover:text-blue-600">
+                        <i class="fab fa-android"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Flight Updates -->
+<section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-8">Live Flight Updates</h2>
+        
+        <!-- Flight Category Tabs -->
+        <div class="flex justify-center mb-8">
+            <button class="px-8 py-3 text-lg font-semibold rounded-l-lg bg-blue-600 text-white hover:bg-blue-700 transition duration-300 flight-tab active" data-category="international">
+                <i class="fas fa-globe-americas mr-2"></i>International
+            </button>
+            <button class="px-8 py-3 text-lg font-semibold rounded-r-lg bg-gray-200 text-gray-700 hover:bg-gray-300 transition duration-300 flight-tab" data-category="local">
+                <i class="fas fa-map-marker-alt mr-2"></i>Local
+            </button>
+        </div>
+
+        <!-- International Flights Table -->
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden mb-8" id="international-flights">
+            <div class="overflow-x-auto">
+                <table class="min-w-full">
+                    <thead class="bg-blue-600 text-white">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-sm font-semibold">Flight</th>
+                            <th class="px-6 py-3 text-left text-sm font-semibold">From</th>
+                            <th class="px-6 py-3 text-left text-sm font-semibold">To</th>
+                            <th class="px-6 py-3 text-left text-sm font-semibold">Status</th>
+                            <th class="px-6 py-3 text-left text-sm font-semibold">Time</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200" id="international-flights-body">
+                        <!-- International flight updates will be inserted here by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Local Flights Table -->
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden hidden" id="local-flights">
+            <div class="overflow-x-auto">
+                <table class="min-w-full">
+                    <thead class="bg-blue-600 text-white">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-sm font-semibold">Flight</th>
+                            <th class="px-6 py-3 text-left text-sm font-semibold">From</th>
+                            <th class="px-6 py-3 text-left text-sm font-semibold">To</th>
+                            <th class="px-6 py-3 text-left text-sm font-semibold">Status</th>
+                            <th class="px-6 py-3 text-left text-sm font-semibold">Time</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200" id="local-flights-body">
+                        <!-- Local flight updates will be inserted here by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+                    </div>
+                    <hr><br>
+                        
+
+                      <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-12">Travel Tips & FAQ</h2>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- FAQ Section -->
+            <div class="lg:col-span-2 space-y-4">
+                <div class="bg-white p-6 rounded-xl shadow-lg cursor-pointer faq-item hover:shadow-xl transition duration-300">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-lg font-semibold"><i class="fas fa-suitcase mr-2 text-blue-600"></i> Baggage Allowance</h3>
+                        <i class="fas fa-chevron-down text-gray-400"></i>
+                    </div>
+                    <p class="text-gray-600 hidden mt-4 pl-8">• Economy Class: 23kg checked baggage, 7kg carry-on<br>• Business Class: 32kg checked baggage, 10kg carry-on<br>• First Class: 40kg checked baggage, 12kg carry-on<br>• Extra baggage can be purchased online</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-lg cursor-pointer faq-item hover:shadow-xl transition duration-300">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-lg font-semibold"><i class="fas fa-exchange-alt mr-2 text-blue-600"></i> Booking Changes</h3>
+                        <i class="fas fa-chevron-down text-gray-400"></i>
+                    </div>
+                    <p class="text-gray-600 hidden mt-4 pl-8">• Free changes up to 24 hours after booking<br>• Changes within 24 hours of flight: $50 fee<br>• Name changes allowed with documentation<br>• Route changes subject to fare difference</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-lg cursor-pointer faq-item hover:shadow-xl transition duration-300">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-lg font-semibold"><i class="fas fa-clock mr-2 text-blue-600"></i> Check-in Times</h3>
+                        <i class="fas fa-chevron-down text-gray-400"></i>
+                    </div>
+                    <p class="text-gray-600 hidden mt-4 pl-8">• International Flights: 3 hours before departure<br>• Domestic Flights: 2 hours before departure<br>• Online check-in opens 48 hours before<br>• Airport counter closes 1 hour before departure</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-lg cursor-pointer faq-item hover:shadow-xl transition duration-300">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-lg font-semibold"><i class="fas fa-utensils mr-2 text-blue-600"></i> In-Flight Services</h3>
+                        <i class="fas fa-chevron-down text-gray-400"></i>
+                    </div>
+                    <p class="text-gray-600 hidden mt-4 pl-8">• Complimentary meals on flights over 3 hours<br>• Special meal requests 48 hours in advance<br>• Free beverages on all flights<br>• Duty-free shopping available on international routes</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-lg cursor-pointer faq-item hover:shadow-xl transition duration-300">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-lg font-semibold"><i class="fas fa-wheelchair mr-2 text-blue-600"></i> Special Assistance</h3>
+                        <i class="fas fa-chevron-down text-gray-400"></i>
+                    </div>
+                    <p class="text-gray-600 hidden mt-4 pl-8">• Wheelchair assistance available<br>• Support for unaccompanied minors<br>• Assistance for elderly passengers<br>• Medical equipment transport with prior notice</p>
+                </div>
+            </div>
+
+            <!-- Travel Tips Section -->
+            <div class="bg-gradient-to-br from-blue-600 to-blue-800 p-8 rounded-xl shadow-lg text-white">
+                <h3 class="text-2xl font-bold mb-6">Essential Travel Tips</h3>
+                <div class="space-y-6">
+                    <div class="flex items-start space-x-4">
+                        <div class="bg-white/10 p-3 rounded-lg">
+                            <i class="fas fa-passport text-2xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold mb-1">Travel Documents</h4>
+                            <p class="text-gray-100">Keep passport, visa, and tickets easily accessible. Make digital copies.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start space-x-4">
+                        <div class="bg-white/10 p-3 rounded-lg">
+                            <i class="fas fa-clock text-2xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold mb-1">Time Management</h4>
+                            <p class="text-gray-100">Arrive early and account for security checks and immigration.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start space-x-4">
+                        <div class="bg-white/10 p-3 rounded-lg">
+                            <i class="fas fa-mobile-alt text-2xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold mb-1">Mobile App</h4>
+                            <p class="text-gray-100">Download our app for real-time updates and mobile boarding pass.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start space-x-4">
+                        <div class="bg-white/10 p-3 rounded-lg">
+                            <i class="fas fa-map-marked-alt text-2xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold mb-1">Airport Navigation</h4>
+                            <p class="text-gray-100">Check terminal maps and gate locations in advance.</p>
+                        </div>
+                    </div>
+
+                    <a href="#" class="inline-flex items-center space-x-2 bg-white text-blue-600 px-6 py-3 rounded-lg hover:bg-blue-50 transition duration-300 mt-4">
+                        <i class="fas fa-download"></i>
+                        <span>Download Travel Checklist</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+    <section id="contact" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Contact Us</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+                <!-- Contact Form -->
+                <div class="space-y-6">
+                    <form class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-gray-700 mb-2">Name</label>
+                                <input type="text" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500" required>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 mb-2">Email</label>
+                                <input type="email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500" required>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2">Subject</label>
+                            <input type="text" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2">Message</label>
+                            <textarea rows="4" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500" required></textarea>
+                        </div>
+                        <button type="submit" class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition duration-300 flex items-center space-x-2">
+                            <i class="fas fa-paper-plane"></i>
+                            <span>Send Message</span>
+                        </button>
+                    </form>
+                    <!-- Contact Info -->
+                    <div class="mt-8 space-y-4">
+                        <div class="flex items-center space-x-4 text-gray-600">
+                            <i class="fas fa-phone text-blue-600"></i>
+                            <span>+1 234 567 890</span>
+                        </div>
+                        <div class="flex items-center space-x-4 text-gray-600">
+                            <i class="fas fa-envelope text-blue-600"></i>
+                            <span>support@airbooker.com</span>
+                        </div>
+                        <div class="flex items-center space-x-4 text-gray-600">
+                            <i class="fas fa-map-marker-alt text-blue-600"></i>
+                            <span>123 Aviation Street, Sky City, SC 12345</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Image -->
+                <div class="relative rounded-lg overflow-hidden shadow-xl">
+                    <img src="img/contact.png" alt="AirBooker Cabin" class="w-full h-[500px] object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-8">
+                        <div class="text-white">
+                            <h3 class="text-2xl font-bold mb-2">Experience Comfort</h3>
+                            <p class="text-gray-200">Travel with comfort and style in our modern aircraft</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">AirBooker</h3>
+                    <p class="text-gray-400">Your trusted travel partner</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="about.html" class="text-gray-400 hover:text-white">About Us</a></li>
+                        <li><a href="terms.html" class="text-gray-400 hover:text-white">Terms & Conditions</a></li>
+                        <li><a href="privacy.html" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Contact</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li>Email: info@airbooker.com</li>
+                        <li>Phone: +1 234 567 890</li>
+                        <li>Address: 123 Aviation Street</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Follow Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-700 text-center text-gray-400">
+                <p>&copy; 2025 AirBooker Airlines. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <!-- Chatbot -->
+    <div class="chatbot-container">
+        <div class="chatbot-header">
+            <h3><i class="fas fa-robot"></i> AirBooker Assistant</h3>
+            <div class="controls">
+                <button id="minimize-chat"><i class="fas fa-minus"></i></button>
+                <button id="close-chat"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+        <div class="chatbot-messages"></div>
+        <div class="chatbot-input">
+            <input type="text" placeholder="Type your message...">
+            <button>
+                <i class="fas fa-paper-plane"></i>
+                Send
+            </button>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-6 right-6 z-50 bg-blue-600 text-white w-12 h-12 rounded-full shadow-lg cursor-pointer hover:bg-blue-700 transition-all duration-300 flex items-center justify-center transform hover:scale-110 opacity-0 translate-y-10">
+        <i class="fas fa-arrow-up text-lg"></i>
+    </button>
+</body>
+</html>
