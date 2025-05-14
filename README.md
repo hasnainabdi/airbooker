@@ -224,7 +224,7 @@ Copyright (c) 2025 Muhammad Hasnain. All rights reserved.
 
 ## 📞 Support
 
-For support, email support@airbooker.com or use the in-app chatbot.
+For support, email m.hasnainreactions@gmail.com or use the in-app chatbot.
 
 ## 🔄 Updates
 
